@@ -13,16 +13,62 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 1️⃣ Crear tabla roles
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre')->unique();
+            $table->string('descripcion')->nullable();
+            $table->timestamps();
+        });
+
+        // 2️⃣ Crear tabla sucursales
+        Schema::create('sucursales', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->timestamps();
+        });
+
+        // 3️⃣ Crear tabla users (con FK hacia roles y sucursales)
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('document')->unique();
-            $table->enum('role', ['admin', 'gerente', 'supervisor', 'cajero', 'cocinero'])->default('admin');
             $table->string('password');
+            $table->foreignId('role_id')->constrained('roles')->onDelete('restrict');
+            $table->foreignId('sucursal_id')->nullable()->constrained('sucursales')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });
 
+        // 4️⃣ Agregar encargado_id a sucursales (ahora sí puede referenciar users)
+        Schema::table('sucursales', function (Blueprint $table) {
+            $table->foreignId('encargado_id')->nullable()->constrained('users')->onDelete('set null');
+        });
+
+        // 5️⃣ Insertar roles base
+        DB::table('roles')->insert([
+            ['nombre' => 'admin', 'descripcion' => 'Administrador general del sistema', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre' => 'gerente', 'descripcion' => 'Gerente de sucursal', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre' => 'supervisor', 'descripcion' => 'Supervisor de operaciones', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre' => 'cajero', 'descripcion' => 'Encargado de caja y pedidos', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre' => 'cocinero', 'descripcion' => 'Encargado de cocina y preparación', 'created_at' => now(), 'updated_at' => now()],
+        ]);
+
+        // 6️⃣ Crear usuario administrador
+        $adminRoleId = DB::table('roles')->where('nombre', 'admin')->value('id');
+
+        DB::table('users')->insert([
+            'name' => 'José Alejandro Prieto Salcedo',
+            'document' => '00000001',
+            'password' => Hash::make('admin123'),
+            'role_id' => $adminRoleId,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // 7️⃣ Tablas auxiliares de Laravel
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
@@ -37,15 +83,6 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-
-        DB::table('users')->insert([
-            'name' => 'José Alejandro Prieto Salcedo',
-            'document' => '00000001',
-            'role' => 'admin',
-            'password' => Hash::make('admin123'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
     }
 
     /**
@@ -53,8 +90,19 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
+        // Orden inverso para evitar errores de FK
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+
+        Schema::table('sucursales', function (Blueprint $table) {
+            if (Schema::hasColumn('sucursales', 'encargado_id')) {
+                $table->dropForeign(['encargado_id']);
+                $table->dropColumn('encargado_id');
+            }
+        });
+
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('sucursales');
+        Schema::dropIfExists('roles');
     }
 };

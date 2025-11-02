@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Acceso;
+use App\Http\Controllers\SucursalController;
 
 Route::get('/', function () {
     return view('acceso');
@@ -17,5 +18,5 @@ Route::middleware(['auth'])->group(function () {
 
     // App
     Route::view('/inicio', 'app.inicio')->name('inicio');
-
+    Route::get('/sucursales', [SucursalController::class, 'listar'])->name('sucursales.listar');
 });

@@ -25,7 +25,7 @@ class Acceso extends Controller
             $request->session()->regenerate();
 
             // Redirigir al menú principal (ajusta la URL o usa route('menu') si tienes una ruta nombrada)
-            return redirect('/menu');
+            return redirect(route('inicio'));
         }
 
         // Credenciales inválidas: volver atrás con error y conservar el input excepto la contraseña

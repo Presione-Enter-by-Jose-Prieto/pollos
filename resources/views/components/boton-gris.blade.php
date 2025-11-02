@@ -2,29 +2,28 @@
 @props(['type' => 'button'])
 
 @if($type === 'submit')
-    <button type="submit" {{ $attributes->merge(['class' => 'btn btn-azul']) }}>
+    <button type="submit" {{ $attributes->merge(['class' => 'btn btn-gris']) }}>
         {{ $slot }}
     </button>
 @else
-    <a href="{{ $href }}" {{ $attributes->merge(['class' => 'btn btn-azul']) }}>
+    <a href="{{ $href }}" {{ $attributes->merge(['class' => 'btn btn-gris']) }}>
         {{ $slot }}
     </a>
 @endif
 
 <style>
-.btn-azul {
+.btn-gris {
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #006dcc;
-	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-	background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+	background-color: #6c757d;
+	background-image: -moz-linear-gradient(top, #8a9299, #5a6268);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8a9299), to(#5a6268));
+	background-image: -webkit-linear-gradient(top, #8a9299, #5a6268);
+	background-image: -o-linear-gradient(top, #8a9299, #5a6268);
+	background-image: linear-gradient(to bottom, #8a9299, #5a6268);
 	background-repeat: repeat-x;
-	border-color: #0044cc #0044cc #002a80;
+	border-color: #5a6268 #5a6268 #3e4449;
 }
-
 .btn {
 	display: inline-block;
 	padding: 4px 12px;
@@ -40,14 +39,14 @@
 }
 
 
-.btn-azul:hover,
-.btn-azul:focus,
-.btn-azul:active,
-.btn-azul.active,
-.btn-azul.disabled,
-.btn-azul[disabled] {
+.btn-gris:hover,
+.btn-gris:focus,
+.btn-gris:active,
+.btn-gris.active,
+.btn-gris.disabled,
+.btn-gris[disabled] {
     color: #ffffff;
-    background-color: #0044cc;
+    background-color: #5a6268;
 }
 
 .btn:hover, .btn:focus {

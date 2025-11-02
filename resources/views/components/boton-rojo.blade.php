@@ -2,17 +2,17 @@
 @props(['type' => 'button'])
 
 @if($type === 'submit')
-    <button type="submit" {{ $attributes->merge(['class' => 'btn btn-primary']) }}>
+    <button type="submit" {{ $attributes->merge(['class' => 'btn btn-rojo']) }}>
         {{ $slot }}
     </button>
 @else
-    <a href="{{ $href }}" {{ $attributes->merge(['class' => 'btn btn-primary']) }}>
+    <a href="{{ $href }}" {{ $attributes->merge(['class' => 'btn btn-rojo']) }}>
         {{ $slot }}
     </a>
 @endif
 
 <style>
-.btn-primary {
+.btn-rojo {
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	background-color: #c0392b;
@@ -39,12 +39,12 @@
 }
 
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-.btn-primary[disabled] {
+.btn-rojo:hover,
+.btn-rojo:focus,
+.btn-rojo:active,
+.btn-rojo.active,
+.btn-rojo.disabled,
+.btn-rojo[disabled] {
 	color: #ffffff;
 	background-color: #b71c1c;
 }

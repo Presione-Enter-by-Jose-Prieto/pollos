@@ -19,8 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'document',
         'password',
+        'role_id',
+        'sucursal_id',
     ];
 
     /**
@@ -44,5 +46,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    public function sucursal(){
+        return $this->belongsTo(Sucursal::class);
+    }
+    public function hasRole(string $nombre): bool
+    {
+        return $this->role && $this->role->nombre === $nombre;
     }
 }

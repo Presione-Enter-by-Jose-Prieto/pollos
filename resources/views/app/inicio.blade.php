@@ -5,17 +5,18 @@
 @section('content')
     <div class="flex flex-row gap-4">
         <x-contenedor-info class="w-[50%]">
-            <h2 class="text-[1.3em] my-2 font-bold leading-4">
-            Bienvenido, {{ Auth::user()->name }}
-            </h2>
-            <p class="mb-2 text-[13px] leading-4">
+            <x-titulo-h2>
+                Bienvenido, {{ Auth::user()->name }}
+            </x-titulo-h2>
+            <x-parrafo>
                 Hola {{ Auth::user()->name }}, este es tu panel principal. Desde aquí puedes gestionar tus actividades, pedidos y supervisar las operaciones asignadas a tu rol.
-            </p>
+            </x-parrafo>
         </x-contenedor-info>
         <x-contenedor-info class="w-[50%]">
-            <h2 class="text-[1.3em] my-2 font-bold leading-4">
-            Resumen de Actividades
-            </h2>
+            <x-titulo-h2>
+                Funcionalidades Disponibles
+            </x-titulo-h2>
+            
             <ul class="list-disc list-inside text-[13px] leading-4">
                 <li>Revisa y administra los pedidos pendientes.</li>
                 <li>Actualiza el estado de los pedidos en tiempo real.</li>
