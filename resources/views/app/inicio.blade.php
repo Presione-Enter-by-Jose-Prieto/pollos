@@ -4,15 +4,21 @@
 
 @section('content')
     <div class="flex flex-row gap-4">
-        <x-contenedor-info class="w-[50%]">
-            <x-titulo-h2>
-                Bienvenido, {{ Auth::user()->name }}
-            </x-titulo-h2>
-            <x-parrafo>
-                Hola {{ Auth::user()->name }}, este es tu panel principal. Desde aquí puedes gestionar tus actividades, pedidos y supervisar las operaciones asignadas a tu rol.
-            </x-parrafo>
+        <x-contenedor-info class="w-[40%] flex flex-row items-center gap-10">
+            <div class="w-50">
+                <x-logo />
+            </div>
+            <div class="h-20 w-px bg-gray-300"></div>
+            <div>
+                <x-titulo-h2>
+                    Bienvenido, {{ Auth::user()->name }}
+                </x-titulo-h2>
+                <x-parrafo class="w-[70%]">
+                    Hola {{ Auth::user()->name }}, este es tu panel principal. Desde aquí puedes gestionar tus actividades, pedidos y supervisar las operaciones asignadas a tu rol.
+                </x-parrafo>
+            </div>
         </x-contenedor-info>
-        <x-contenedor-info class="w-[50%]">
+        <x-contenedor-info class="w-[60%]">
             <x-titulo-h2>
                 Funcionalidades Disponibles
             </x-titulo-h2>
