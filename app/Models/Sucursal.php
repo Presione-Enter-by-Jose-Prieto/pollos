@@ -15,10 +15,13 @@ class Sucursal extends Model
         'nombre',
         'direccion',
         'telefono',
+        'horario',
+        'departamento',
+        'ciudad',
         'encargado_id',
     ];
 
-    public function users(){
+    public function empleados(){
         return $this->hasMany(User::class);
     }
     

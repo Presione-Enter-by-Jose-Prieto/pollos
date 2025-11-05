@@ -19,4 +19,5 @@ Route::middleware(['auth'])->group(function () {
     // App
     Route::view('/inicio', 'app.inicio')->name('inicio');
     Route::get('/sucursales', [SucursalController::class, 'listar'])->name('sucursales.listar');
+    Route::get('/sucursales/{id}/empleados', [SucursalController::class, 'empleados'])->name('sucursales.empleados');
 });

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="flex flex-row gap-4">
-        <x-contenedor-info class="w-[40%] flex flex-row items-center gap-10">
+        <x-contenedor-info class="w-[50%] flex flex-row items-center gap-10">
             <div class="w-50">
                 <x-logo />
             </div>
@@ -18,7 +18,7 @@
                 </x-parrafo>
             </div>
         </x-contenedor-info>
-        <x-contenedor-info class="w-[60%]">
+        <x-contenedor-info class="w-[50%]">
             <x-titulo-h2>
                 Funcionalidades Disponibles
             </x-titulo-h2>

@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
+            $table->string('horario')->nullable(); // ejemplo: "Lun-Vie 9:00 - 18:00"
+            $table->string('departamento')->nullable(); // provincia/departamento
+            $table->string('ciudad')->nullable();
             $table->timestamps();
         });
 

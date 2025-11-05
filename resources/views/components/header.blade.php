@@ -20,7 +20,7 @@
                 <li>
                     <a href="" class="flex items-center gap-1"> 
                         <span class="material-symbols-outlined icon-xs" style="">badge</span>
-                        Empleados
+                        Encargados
                     </a>
                 </li>
                 <li>
